@@ -38,18 +38,18 @@ jobs:
             environment: "3.11"
         include:
           # Minimum dependencies
-          - os: "ubuntu-latest"
+          - os: "ghr"
             environment: "mindeps-array"
-          - os: "ubuntu-latest"
+          - os: "ghr"
             environment: "mindeps-dataframe"
-          - os: "ubuntu-latest"
+          - os: "ghr"
             environment: "mindeps-distributed"
-          - os: "ubuntu-latest"
+          - os: "ghr"
             environment: "mindeps-non-optional"
-          - os: "ubuntu-latest"
+          - os: "ghr"
             environment: "mindeps-optional"
           # Experimental setups
-          - os: "ubuntu-latest"
+          - os: "ghr"
             environment: "3.12"
             extra: "pandas-nightly"
 
@@ -66,7 +66,7 @@ jobs:
 
       - name: Setup Java
         uses: actions/setup-java@v4
-        if: ${{ matrix.os == 'ubuntu-latest' }}
+        if: ${{ matrix.os == 'ghr' }}
         with:
           distribution: "zulu"
           java-version: "11"
@@ -120,7 +120,7 @@ jobs:
     # Do not run the schedule job on forks
     if: github.repository == 'dask/dask' || github.event_name != 'schedule'
     name: "Event File"
-    runs-on: ubuntu-latest
+    runs-on: ghr
     steps:
       - name: Upload
         uses: actions/upload-artifact@v4
